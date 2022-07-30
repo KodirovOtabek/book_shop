@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+
+Категория: {{ category_name }}<br>
+
+{% endblock %}
+
+
+{% block content %}
+<h3>{{ category_name }}</h3>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+
+{% for book in books %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ book.book_photo }}" width = '100%' height = '300'>
+
+                    <div class="card-body">
+                        <p class="card-text">{{ book.book_work }}<br>{{ book.book_author }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ book.get_absolute_url  }}">Подробнее</a></button>
+                            </div>
+                            <small class="text-muted">{{ book.book_price }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+<!--{% for book in books %}-->
+<!--<a href="/book/{{ book.slug }}">{{ book.book_work }}</a>-->
+<!--{{ book.book_author }}<br>-->
+<!--{% endfor %}-->

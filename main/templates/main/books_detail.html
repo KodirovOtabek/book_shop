@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Описание
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-0">{{ books_detail.book_work }}</h3>
+          <div class="mb-1 text-muted"><h4>{{ books_detail.book_author }}</h4></div>
+          <p class="mb-auto">{{books_detail.book_description }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">{{ books_detail.book_price }}</small>
+<!--                В наличии {{ books_detail.book_quantity}}-->
+                {% if user.is_authenticated %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="number" name="book_quantity" value="1">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">В корзину</button>
+                </form>
+                {% endif %}
+            </div>
+            </div>
+
+        <div class="col-auto d-none d-lg-block">
+          <img src="/{{ books_detail.book_photo }}" width = '100%' height = '300'>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

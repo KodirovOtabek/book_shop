@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Корзина пользователя
+{% endblock %}
+
+{% block content %}
+
+
+{% for user_cart in cart %}
+    <h5>{{ user_cart.user_book }}</h5>
+    Количество: {{ user_cart.user_book_quantity }}
+    Сумма: {% widthratio user_cart.user_book.book_price 1 user_cart.user_book_quantity %}<br><br>
+    <a href="/del_item/{{ user_cart.user_book.id }}/">Удалить</a>
+{% endfor %}
+
+<form method="POST">
+    {% csrf_token %}
+    <button>Оформить заказ</button>
+</form>
+
+{% endblock %}

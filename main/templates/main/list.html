@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Список книг
+{% endblock %}
+
+{% block content %}
+<h1>Список всех книг</h1>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+
+{% for el in books %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ el.book_photo }}" width = '100%' height = '300'>
+
+                    <div class="card-body">
+                        <p class="card-text">{{ el.book_work }}<br>{{ el.book_author }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ el.get_absolute_url  }}">Подробнее</a></button>
+                            </div>
+                            <small class="text-muted">{{ el.book_price }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
